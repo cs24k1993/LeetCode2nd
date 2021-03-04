@@ -1,11 +1,7 @@
-function two(nums,target) {
-    obj = {};
-    for (let i = 0; i < nums.length; i++) {
-        if (target - nums[i] in obj) {
-            return [obj[target - nums[i]], i];
-        } else {
-            obj[nums[i]] = i;
-        }
-    }
+function generate(row) {
+    return Array(row).fill(1).map((_,i,r) => r[i] = Array(i+1).fill(1).map((v,j) =>
+        j > 0 && j < i ? r[i-1][j-1] + r[i-1][j] : v
+    ))
 }
-console.log(two([2,7,9,11], 9))
+
+console.log(generate(5));
